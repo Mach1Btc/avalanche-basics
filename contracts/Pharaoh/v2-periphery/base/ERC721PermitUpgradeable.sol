@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
+
 pragma solidity =0.7.6;
 
 import "@oz-3.4.2-up/token/ERC721/ERC721Upgradeable.sol";
