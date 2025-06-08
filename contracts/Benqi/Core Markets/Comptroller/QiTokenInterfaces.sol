@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity 0.5.17;
 
 import "./ComptrollerInterface.sol";
@@ -94,12 +96,12 @@ contract QiTokenStorage {
     /**
      * @notice Official record of token balances for each account
      */
-    mapping (address => uint) internal accountTokens;
+    mapping(address => uint) internal accountTokens;
 
     /**
      * @notice Approved token transfer amounts on behalf of others
      */
-    mapping (address => mapping (address => uint)) internal transferAllowances;
+    mapping(address => mapping(address => uint)) internal transferAllowances;
 
     /**
      * @notice Container for borrow balance information
@@ -120,7 +122,6 @@ contract QiTokenStorage {
      * @notice Share of seized collateral that is added to reserves
      */
     uint public protocolSeizeShareMantissa;
-
 }
 
 contract QiTokenInterface is QiTokenStorage {
@@ -129,13 +130,17 @@ contract QiTokenInterface is QiTokenStorage {
      */
     bool public constant isQiToken = true;
 
-
     /*** Market Events ***/
 
     /**
      * @notice Event emitted when interest is accrued
      */
-    event AccrueInterest(uint cashPrior, uint interestAccumulated, uint borrowIndex, uint totalBorrows);
+    event AccrueInterest(
+        uint cashPrior,
+        uint interestAccumulated,
+        uint borrowIndex,
+        uint totalBorrows
+    );
 
     /**
      * @notice Event emitted when tokens are minted
@@ -150,18 +155,34 @@ contract QiTokenInterface is QiTokenStorage {
     /**
      * @notice Event emitted when underlying is borrowed
      */
-    event Borrow(address borrower, uint borrowAmount, uint accountBorrows, uint totalBorrows);
+    event Borrow(
+        address borrower,
+        uint borrowAmount,
+        uint accountBorrows,
+        uint totalBorrows
+    );
 
     /**
      * @notice Event emitted when a borrow is repaid
      */
-    event RepayBorrow(address payer, address borrower, uint repayAmount, uint accountBorrows, uint totalBorrows);
+    event RepayBorrow(
+        address payer,
+        address borrower,
+        uint repayAmount,
+        uint accountBorrows,
+        uint totalBorrows
+    );
 
     /**
      * @notice Event emitted when a borrow is liquidated
      */
-    event LiquidateBorrow(address liquidator, address borrower, uint repayAmount, address qiTokenCollateral, uint seizeTokens);
-
+    event LiquidateBorrow(
+        address liquidator,
+        address borrower,
+        uint repayAmount,
+        address qiTokenCollateral,
+        uint seizeTokens
+    );
 
     /*** Admin Events ***/
 
@@ -178,32 +199,52 @@ contract QiTokenInterface is QiTokenStorage {
     /**
      * @notice Event emitted when comptroller is changed
      */
-    event NewComptroller(ComptrollerInterface oldComptroller, ComptrollerInterface newComptroller);
+    event NewComptroller(
+        ComptrollerInterface oldComptroller,
+        ComptrollerInterface newComptroller
+    );
 
     /**
      * @notice Event emitted when interestRateModel is changed
      */
-    event NewMarketInterestRateModel(InterestRateModel oldInterestRateModel, InterestRateModel newInterestRateModel);
+    event NewMarketInterestRateModel(
+        InterestRateModel oldInterestRateModel,
+        InterestRateModel newInterestRateModel
+    );
 
     /**
      * @notice Event emitted when the reserve factor is changed
      */
-    event NewReserveFactor(uint oldReserveFactorMantissa, uint newReserveFactorMantissa);
+    event NewReserveFactor(
+        uint oldReserveFactorMantissa,
+        uint newReserveFactorMantissa
+    );
 
     /**
      * @notice Event emitted when the protocol seize share is changed
      */
-    event NewProtocolSeizeShare(uint oldProtocolSeizeShareMantissa, uint newProtocolSeizeShareMantissa);
+    event NewProtocolSeizeShare(
+        uint oldProtocolSeizeShareMantissa,
+        uint newProtocolSeizeShareMantissa
+    );
 
     /**
      * @notice Event emitted when the reserves are added
      */
-    event ReservesAdded(address benefactor, uint addAmount, uint newTotalReserves);
+    event ReservesAdded(
+        address benefactor,
+        uint addAmount,
+        uint newTotalReserves
+    );
 
     /**
      * @notice Event emitted when the reserves are reduced
      */
-    event ReservesReduced(address admin, uint reduceAmount, uint newTotalReserves);
+    event ReservesReduced(
+        address admin,
+        uint reduceAmount,
+        uint newTotalReserves
+    );
 
     /**
      * @notice EIP20 Transfer event
@@ -220,37 +261,80 @@ contract QiTokenInterface is QiTokenStorage {
      */
     event Failure(uint error, uint info, uint detail);
 
-
     /*** User Interface ***/
 
     function transfer(address dst, uint amount) external returns (bool);
-    function transferFrom(address src, address dst, uint amount) external returns (bool);
-    function approve(address spender, uint amount) external returns (bool);
-    function allowance(address owner, address spender) external view returns (uint);
-    function balanceOf(address owner) external view returns (uint);
-    function balanceOfUnderlying(address owner) external returns (uint);
-    function getAccountSnapshot(address account) external view returns (uint, uint, uint, uint);
-    function borrowRatePerTimestamp() external view returns (uint);
-    function supplyRatePerTimestamp() external view returns (uint);
-    function totalBorrowsCurrent() external returns (uint);
-    function borrowBalanceCurrent(address account) external returns (uint);
-    function borrowBalanceStored(address account) public view returns (uint);
-    function exchangeRateCurrent() public returns (uint);
-    function exchangeRateStored() public view returns (uint);
-    function getCash() external view returns (uint);
-    function accrueInterest() public returns (uint);
-    function seize(address liquidator, address borrower, uint seizeTokens) external returns (uint);
 
+    function transferFrom(
+        address src,
+        address dst,
+        uint amount
+    ) external returns (bool);
+
+    function approve(address spender, uint amount) external returns (bool);
+
+    function allowance(
+        address owner,
+        address spender
+    ) external view returns (uint);
+
+    function balanceOf(address owner) external view returns (uint);
+
+    function balanceOfUnderlying(address owner) external returns (uint);
+
+    function getAccountSnapshot(
+        address account
+    ) external view returns (uint, uint, uint, uint);
+
+    function borrowRatePerTimestamp() external view returns (uint);
+
+    function supplyRatePerTimestamp() external view returns (uint);
+
+    function totalBorrowsCurrent() external returns (uint);
+
+    function borrowBalanceCurrent(address account) external returns (uint);
+
+    function borrowBalanceStored(address account) public view returns (uint);
+
+    function exchangeRateCurrent() public returns (uint);
+
+    function exchangeRateStored() public view returns (uint);
+
+    function getCash() external view returns (uint);
+
+    function accrueInterest() public returns (uint);
+
+    function seize(
+        address liquidator,
+        address borrower,
+        uint seizeTokens
+    ) external returns (uint);
 
     /*** Admin Functions ***/
 
-    function _setPendingAdmin(address payable newPendingAdmin) external returns (uint);
+    function _setPendingAdmin(
+        address payable newPendingAdmin
+    ) external returns (uint);
+
     function _acceptAdmin() external returns (uint);
-    function _setComptroller(ComptrollerInterface newComptroller) public returns (uint);
-    function _setReserveFactor(uint newReserveFactorMantissa) external returns (uint);
+
+    function _setComptroller(
+        ComptrollerInterface newComptroller
+    ) public returns (uint);
+
+    function _setReserveFactor(
+        uint newReserveFactorMantissa
+    ) external returns (uint);
+
     function _reduceReserves(uint reduceAmount) external returns (uint);
-    function _setInterestRateModel(InterestRateModel newInterestRateModel) public returns (uint);
-    function _setProtocolSeizeShare(uint newProtocolSeizeShareMantissa) external returns (uint);
+
+    function _setInterestRateModel(
+        InterestRateModel newInterestRateModel
+    ) public returns (uint);
+
+    function _setProtocolSeizeShare(
+        uint newProtocolSeizeShareMantissa
+    ) external returns (uint);
 }
 
 contract QiErc20Storage {
@@ -261,18 +345,30 @@ contract QiErc20Storage {
 }
 
 contract QiErc20Interface is QiErc20Storage {
-
     /*** User Interface ***/
 
     function mint(uint mintAmount) external returns (uint);
-    function redeem(uint redeemTokens) external returns (uint);
-    function redeemUnderlying(uint redeemAmount) external returns (uint);
-    function borrow(uint borrowAmount) external returns (uint);
-    function repayBorrow(uint repayAmount) external returns (uint);
-    function repayBorrowBehalf(address borrower, uint repayAmount) external returns (uint);
-    function liquidateBorrow(address borrower, uint repayAmount, QiTokenInterface qiTokenCollateral) external returns (uint);
-    function sweepToken(EIP20NonStandardInterface token) external;
 
+    function redeem(uint redeemTokens) external returns (uint);
+
+    function redeemUnderlying(uint redeemAmount) external returns (uint);
+
+    function borrow(uint borrowAmount) external returns (uint);
+
+    function repayBorrow(uint repayAmount) external returns (uint);
+
+    function repayBorrowBehalf(
+        address borrower,
+        uint repayAmount
+    ) external returns (uint);
+
+    function liquidateBorrow(
+        address borrower,
+        uint repayAmount,
+        QiTokenInterface qiTokenCollateral
+    ) external returns (uint);
+
+    function sweepToken(EIP20NonStandardInterface token) external;
 
     /*** Admin Functions ***/
 
@@ -290,7 +386,10 @@ contract QiDelegatorInterface is QiDelegationStorage {
     /**
      * @notice Emitted when implementation is changed
      */
-    event NewImplementation(address oldImplementation, address newImplementation);
+    event NewImplementation(
+        address oldImplementation,
+        address newImplementation
+    );
 
     /**
      * @notice Called by the admin to update the implementation of the delegator
@@ -298,7 +397,11 @@ contract QiDelegatorInterface is QiDelegationStorage {
      * @param allowResign Flag to indicate whether to call _resignImplementation on the old implementation
      * @param becomeImplementationData The encoded bytes data to be passed to _becomeImplementation
      */
-    function _setImplementation(address implementation_, bool allowResign, bytes memory becomeImplementationData) public;
+    function _setImplementation(
+        address implementation_,
+        bool allowResign,
+        bytes memory becomeImplementationData
+    ) public;
 }
 
 contract QiDelegateInterface is QiDelegationStorage {

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity 0.5.17;
 
 import "./QiToken.sol";
@@ -5,28 +7,27 @@ import "./PriceOracle.sol";
 
 contract UnitrollerAdminStorage {
     /**
-    * @notice Administrator for this contract
-    */
+     * @notice Administrator for this contract
+     */
     address public admin;
 
     /**
-    * @notice Pending administrator for this contract
-    */
+     * @notice Pending administrator for this contract
+     */
     address public pendingAdmin;
 
     /**
-    * @notice Active brains of Unitroller
-    */
+     * @notice Active brains of Unitroller
+     */
     address public comptrollerImplementation;
 
     /**
-    * @notice Pending brains of Unitroller
-    */
+     * @notice Pending brains of Unitroller
+     */
     address public pendingComptrollerImplementation;
 }
 
 contract ComptrollerVXStorage is UnitrollerAdminStorage {
-
     /**
      * @notice Oracle which gives the price of any given asset
      */
@@ -55,17 +56,14 @@ contract ComptrollerVXStorage is UnitrollerAdminStorage {
     struct Market {
         /// @notice Whether or not this market is listed
         bool isListed;
-
         /**
          * @notice Multiplier representing the most one can borrow against their collateral in this market.
          *  For instance, 0.9 to allow borrowing 90% of collateral value.
          *  Must be between 0 and 1, and stored as a mantissa.
          */
         uint collateralFactorMantissa;
-
         /// @notice Per-market mapping of "accounts in this asset"
         mapping(address => bool) accountMembership;
-
         /// @notice Whether or not this market receives BENQI
         bool isQied;
     }
@@ -75,7 +73,6 @@ contract ComptrollerVXStorage is UnitrollerAdminStorage {
      * @dev Used e.g. to determine if a market is supported
      */
     mapping(address => Market) public markets;
-
 
     /**
      * @notice The Pause Guardian can pause certain actions as a safety mechanism.
@@ -102,7 +99,6 @@ contract ComptrollerVXStorage is UnitrollerAdminStorage {
     struct RewardMarketState {
         /// @notice The market's last updated rewardBorrowIndex or rewardSupplyIndex
         uint224 index;
-
         /// @notice The block timestamp the index was last updated at
         uint32 timestamp;
     }
@@ -114,16 +110,20 @@ contract ComptrollerVXStorage is UnitrollerAdminStorage {
     mapping(uint8 => mapping(address => uint)) public supplyRewardSpeeds;
 
     /// @notice The QI/AVAX market supply state for each market
-    mapping(uint8 => mapping(address => RewardMarketState)) public rewardSupplyState;
+    mapping(uint8 => mapping(address => RewardMarketState))
+        public rewardSupplyState;
 
     /// @notice The QI/AVAX market borrow state for each market
-    mapping(uint8 =>mapping(address => RewardMarketState)) public rewardBorrowState;
+    mapping(uint8 => mapping(address => RewardMarketState))
+        public rewardBorrowState;
 
     /// @notice The QI/AVAX borrow index for each market for each supplier as of the last time they accrued reward
-    mapping(uint8 => mapping(address => mapping(address => uint))) public rewardSupplierIndex;
+    mapping(uint8 => mapping(address => mapping(address => uint)))
+        public rewardSupplierIndex;
 
     /// @notice The QI/AVAX borrow index for each market for each borrower as of the last time they accrued reward
-    mapping(uint8 => mapping(address => mapping(address => uint))) public rewardBorrowerIndex;
+    mapping(uint8 => mapping(address => mapping(address => uint)))
+        public rewardBorrowerIndex;
 
     /// @notice The QI/AVAX accrued but not yet transferred to each user
     mapping(uint8 => mapping(address => uint)) public rewardAccrued;
