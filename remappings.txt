@@ -1,7 +1,7 @@
 @oz-3.3.0/=node_modules/oz-3.3.0/
 @oz-3.4.2/=node_modules/oz-3.4.2/
 @oz-3.4.2-up/=node_modules/oz-3.4.2-up/
-@oz-4.8.1/=node_modules/oz-4.8.1/
 @oz-4.7.3/=node_modules/oz-4.7.3/
+@oz-4.8.1/=node_modules/oz-4.8.1/
 @oz-4.9.0/=node_modules/oz-4.9.0/
 @oz-4.9.0-up/=node_modules/oz-4.9.0-up/
