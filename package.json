@@ -1,0 +1,25 @@
+{
+  "name": "hardhat-project",
+  "devDependencies": {
+    "@boringcrypto/boring-solidity": "boringcrypto/BoringSolidity#e06e943",
+    "@nomicfoundation/hardhat-foundry": "^1.1.3",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
+    "hardhat": "^2.24.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.3.0",
+    "@openzeppelin/contracts-upgradeable": "^5.3.0",
+    "@rari-capital/solmate": "^6.4.0",
+    "forge-std": "github:foundry-rs/forge-std",
+    "openzeppelin": "^1.0.0",
+    "oz-3.3.0": "npm:@openzeppelin/contracts@^3.3.0",
+    "oz-3.4.2": "npm:@openzeppelin/contracts@^3.4.2",
+    "oz-3.4.2-up": "npm:@openzeppelin/contracts-upgradeable@^3.4.2",
+    "oz-4.7.3": "npm:@openzeppelin/contracts@^4.7.3",
+    "oz-4.8.1": "npm:@openzeppelin/contracts@^4.8.1",
+    "oz-4.9.0": "npm:@openzeppelin/contracts@^4.9.0",
+    "oz-4.9.0-up": "npm:@openzeppelin/contracts-upgradeable@^4.9.0",
+    "oz-legacy": "npm:@openzeppelin/contracts@^4.7.3"
+  }
+}
