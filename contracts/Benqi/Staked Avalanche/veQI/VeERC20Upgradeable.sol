@@ -2,8 +2,8 @@
 
 pragma solidity ^0.8.0;
 
-import "@oz-4.9.0-up/proxy/utils/Initializable.sol";
-import "@oz-4.9.0-up/utils/ContextUpgradeable.sol";
+import "@oz-4.5.0-up/proxy/utils/Initializable.sol";
+import "@oz-4.5.0-up/utils/ContextUpgradeable.sol";
 import "./interfaces/IVeERC20.sol";
 
 /// @title VeERC20Upgradeable

@@ -16,6 +16,7 @@
     "oz-3.3.0": "npm:@openzeppelin/contracts@^3.3.0",
     "oz-3.4.2": "npm:@openzeppelin/contracts@^3.4.2",
     "oz-3.4.2-up": "npm:@openzeppelin/contracts-upgradeable@^3.4.2",
+    "oz-4.5.0-up": "npm:@openzeppelin/contracts-upgradeable@^4.5.0",
     "oz-4.7.3": "npm:@openzeppelin/contracts@^4.7.3",
     "oz-4.8.1": "npm:@openzeppelin/contracts@^4.8.1",
     "oz-4.9.0": "npm:@openzeppelin/contracts@^4.9.0",

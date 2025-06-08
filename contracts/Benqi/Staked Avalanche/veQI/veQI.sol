@@ -2,11 +2,13 @@
 
 pragma solidity ^0.8.0;
 
-import "@oz-4.9.0-up/proxy/utils/Initializable.sol";
-import "@oz-4.9.0-up/access/OwnableUpgradeable.sol";
-import "@oz-4.9.0-up/security/ReentrancyGuardUpgradeable.sol";
-import "@oz-4.9.0-up/security/PausableUpgradeable.sol";
+import "@oz-4.5.0-up/proxy/utils/Initializable.sol";
+import "@oz-4.5.0-up/access/OwnableUpgradeable.sol";
+import "@oz-4.5.0-up/security/ReentrancyGuardUpgradeable.sol";
+import "@oz-4.5.0-up/security/PausableUpgradeable.sol";
+import "@oz-4.5.0-up/token/ERC20/utils/SafeERC20Upgradeable.sol";
 import "./interfaces/IVeQi.sol";
+import "./libraries/Math.sol";
 import "./VeERC20Upgradeable.sol";
 
 /// @title VeQi
