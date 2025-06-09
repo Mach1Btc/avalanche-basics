@@ -8,7 +8,7 @@ import "./libraries/Ownable.sol";
 import "./libraries/SafeERC20.sol";
 
 import "./interfaces/IDistributor.sol";
-import "./libraries/IsCult.sol";
+import "./interfaces/IsCult.sol";
 
 interface IMemo {
     function rebase(
